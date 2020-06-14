@@ -2,7 +2,6 @@ import React from "react";
 import {
   Card,
   CardImg,
-  CardImgOverlay,
   CardText,
   CardBody,
   CardTitle,
@@ -24,9 +23,9 @@ function RenderDish({dish}) {
   else return <div></div>;
   }
 
-  function RenderComments({dish}) {
-    if (dish != null) {
-        const comments = dish.comments.map((comment) => {
+  function RenderComments({comments}) {
+    if (comments != null) {
+        const commentsList = comments.map((comment) => {
           return (
             <div>
               <p>{comment.comment}</p>
@@ -44,7 +43,7 @@ function RenderDish({dish}) {
         return (
           <div className="col-12 col-md-5 m-1">
             <h4>Comments</h4>
-            <ul className="list-unstyled">{comments}</ul>
+            <ul className="list-unstyled">{commentsList}</ul>
           </div>
         );
       } else return <div></div>;
@@ -55,7 +54,7 @@ function RenderDish({dish}) {
         <div className="container">
           <div className="row">
             <RenderDish dish={props.dish}></RenderDish>
-            <RenderComments dish={props.dish}></RenderComments>
+            <RenderComments comments={props.dish != null ? props.dish.comments : null}></RenderComments>
           </div>
         </div>
       );
