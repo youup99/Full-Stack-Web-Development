@@ -54,7 +54,7 @@ function RenderDish({dish}) {
         <div className="container">
           <div className="row">
             <RenderDish dish={props.dish}></RenderDish>
-            <RenderComments comments={props.dish != null ? props.dish.comments : null}></RenderComments>
+            <RenderComments comments={props.comments}></RenderComments>
           </div>
         </div>
       );
