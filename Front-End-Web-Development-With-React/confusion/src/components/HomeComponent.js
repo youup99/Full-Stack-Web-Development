@@ -13,6 +13,8 @@ import { baseUrl } from "../shared/baseUrl";
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {
     return <Loading />;
+  } else if (item == null) {
+    return <div></div>;
   } else if (errMess) {
     return <h4>{errMess}</h4>;
   } else
