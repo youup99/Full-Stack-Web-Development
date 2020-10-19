@@ -15,18 +15,6 @@ leaderRouter
     res.setHeader("Content-Type", "text/plain");
     next();
   })
-  .get((req, res, next) => {
-    Leaders.find({})
-      .then(
-        (leaders) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(leaders);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => next(err));
-  })
   .post((req, res, next) => {
     Leaders.create(req.body)
       .then(
@@ -59,18 +47,6 @@ leaderRouter
 
 leaderRouter
   .route("/:leaderId")
-  .get((req, res, next) => {
-    Leaders.findById(req.params.leaderId)
-      .then(
-        (leader) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(leader);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => next(err));
-  })
   .post((req, res, next) => {
     res.statusCode = 403;
     res.end("POST operation not supported on /leaders/" + req.params.leaderId);

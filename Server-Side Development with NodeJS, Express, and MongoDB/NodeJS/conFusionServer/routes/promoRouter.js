@@ -15,18 +15,6 @@ promoRouter
     res.setHeader("Content-Type", "text/plain");
     next();
   })
-  .get((req, res, next) => {
-    Promotions.find({})
-      .then(
-        (promotions) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(promotions);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => next(err));
-  })
   .post((req, res, next) => {
     Promotions.create(req.body)
       .then(
@@ -59,18 +47,6 @@ promoRouter
 
 promoRouter
   .route("/:promoId")
-  .get((req, res, next) => {
-    Promotions.findById(req.params.promoId)
-      .then(
-        (promotion) => {
-          res.statusCode = 200;
-          res.setHeader("Content-Type", "application/json");
-          res.json(promotion);
-        },
-        (err) => next(err)
-      )
-      .catch((err) => next(err));
-  })
   .post((req, res, next) => {
     res.statusCode = 403;
     res.end(
